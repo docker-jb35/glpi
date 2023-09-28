@@ -1,0 +1,4 @@
+/db
+/glpi/config/config_db.php
+/glpi/config/glpicrypt.key
+/glpi/files/
