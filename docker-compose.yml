@@ -1,0 +1,37 @@
+version: '2'
+ 
+services:
+  #Conteneur Maria DB
+  mariadb:
+   image: mariadb
+   restart: always
+   command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+   volumes:
+    - ./db:/var/lib/mysql
+   environment:
+    - MYSQL_ROOT_PASSWORD=r00tsan!
+    - MYSQL_PASSWORD=glpi
+    - MYSQL_DATABASE=glpi
+    - MYSQL_USER=glpi
+   networks:
+    glpi:
+      ipv4_address: 192.168.4.2
+
+  glpi:
+    build: ./
+    restart: always
+    links:
+     - mariadb
+    volumes:
+     - ./glpi:/var/www/html
+    networks:
+     glpi:
+       ipv4_address: 192.168.4.1
+
+networks:
+  glpi:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.4.0/24
+          gateway: 192.168.4.254
