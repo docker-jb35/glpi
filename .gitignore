@@ -1,4 +1,7 @@
 /db
 /glpi/config/config_db.php
 /glpi/config/glpicrypt.key
-#/glpi/files/
+/glpi/files/_cache/
+/glpi/files/_log/
+/glpi/files/_sessions/
+/glpi/files/_tmp/
