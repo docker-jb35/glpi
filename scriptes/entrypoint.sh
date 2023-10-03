@@ -17,9 +17,10 @@ if [ "$1" = "start" ]; then
 
     sed -i "s|session.cookie_httponly =|session.cookie_httponly = on|g" etc/php/8.2/apache2/php.ini 2>/dev/null
 
-    apache2ctl start
-    tail -f /dev/stderr
-    exit 0
+    #apache2ctl start
+    #tail -f /dev/stderr
+    #exit 0
+    apachectl -D FOREGROUND
 fi
 
 exec "$@"
